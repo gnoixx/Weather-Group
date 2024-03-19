@@ -1,0 +1,25 @@
+.root {
+    base-colour: #212121
+}
+
+.city-label {
+    -fx-text-fill: base-colour;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold
+}
+
+.temp-label {
+    -fx-text-fill: base-colour;
+    -fx-font-size: 24px;
+}
+
+.five-day-label {
+    -fx-text-fill: base-colour;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold
+}
+
+.five-day-border {
+    -fx-border-color: black;
+    -fx-padding: 6;
+}
