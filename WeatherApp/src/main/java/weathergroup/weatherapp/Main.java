@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -48,7 +49,33 @@ public class Main extends Application {
         cityLabel.textProperty().bind(city);
         Label tempLabel = styledLabel("", "temp-label");
         tempLabel.textProperty().bind(current_temp);
-        VBox results = new VBox(4, cityLabel, tempLabel, getImage());
+
+        HBox hbox = new HBox(30, createHumidityWind("Humidity", "25%"),
+                createHumidityWind("Windspeed", "10mi/h"));
+        hbox.setAlignment(Pos.CENTER);
+
+        VBox results = new VBox(4,
+                new Button("Change Location"), cityLabel, tempLabel, getImage(), hbox);
+
+        results.setAlignment(Pos.CENTER);
+        return results;
+    }
+
+    private Node createHumidityWind(String type, String data){
+        VBox vbox = new VBox(new Label(type), new Label(data));
+        vbox.setAlignment(Pos.CENTER_LEFT);
+        HBox results;
+        Image image;
+        if(type.equalsIgnoreCase("humidity"))
+            image = new Image(this.getClass().getResource("humidity.jpg").toString());
+        else if(type.equalsIgnoreCase("windspeed"))
+            image = new Image(this.getClass().getResource("wind.jpg").toString());
+        else image = new Image(this.getClass().getResource("humidity.jpg").toString());
+
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(50);
+        results = new HBox(5, imageView, vbox);
         results.setAlignment(Pos.CENTER);
         return results;
     }
