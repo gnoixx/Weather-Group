@@ -1,27 +1,3 @@
-/*
- * ?s are things that might not be implemented, but were in the api.
-+ getData1 WeatherData
-+ getData2 WeatherData
-+ compareTemp(char): double
-+ compareFeelsLike(char): double
-+ compareMinTemp(char): double ?
-+ compareMaxTemp(char): double ?
-+ comparePressure(): int ?
-+ compareHumidity(): int
-+ getWeatherType(): String
-+ getWeatherDesc(): String
-+ compareVisibility(): int ?
-+ compareWindSpeed(char): double ?
-+ compareWindGust(char): double ?
-+ compareWindDir(): int ?
-+ compareCloudiness(): int ?
-+ compareOneHourRain(): double
-+ compareOneHourSnow(): double
-+ toString(): String
-
- */
-
-
 public class WeatherComparison {
 	private WeatherData data1, data2;
 	
