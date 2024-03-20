@@ -1,3 +1,5 @@
+package weathergroup.weatherapp;
+
 public class WeatherComparison {
 	private WeatherData data1, data2;
 	

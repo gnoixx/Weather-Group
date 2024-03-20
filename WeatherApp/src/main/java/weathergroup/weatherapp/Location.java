@@ -1,3 +1,4 @@
+package weathergroup.weatherapp;
 
 public class Location
 {

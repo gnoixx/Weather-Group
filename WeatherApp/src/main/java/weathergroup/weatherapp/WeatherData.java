@@ -1,3 +1,5 @@
+package weathergroup.weatherapp;
+
 import java.util.Date;
 
 public class WeatherData {
