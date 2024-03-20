@@ -34,3 +34,4 @@ public interface WeatherApiIntegrator {
  * @param location2 The second location for comparison.
  * @return A WeatherComparison object containing the weather data for both locations and methods to compare various weather attributes.
  */
+WeatherComparison compareCurrentWeather(Location location1, Location location2);
