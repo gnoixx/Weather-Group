@@ -8,3 +8,12 @@ WeatherApp/.gradle/8.2/fileHashes/fileHashes.bin
 WeatherApp/.gradle/8.2/executionHistory/executionHistory.lock
 WeatherApp/.gradle/8.2/executionHistory/executionHistory.bin
 .idea/workspace.xml
+*.bin
+*.bin
+WeatherApp/.gradle/8.2/executionHistory/executionHistory.bin
+WeatherApp/.gradle/8.2/executionHistory/executionHistory.lock
+WeatherApp/.gradle/8.2/fileHashes/fileHashes.lock
+*.lock
+WeatherApp/.gradle/file-system.probe
+WeatherApp/.idea/workspace.xml
+WeatherApp/build/libs/WeatherApp-1.0-SNAPSHOT.jar

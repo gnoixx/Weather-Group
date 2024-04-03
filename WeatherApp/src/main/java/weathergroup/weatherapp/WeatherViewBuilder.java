@@ -14,15 +14,17 @@ import javafx.util.Builder;
 public class WeatherViewBuilder implements Builder<Region> {
 
     private final WeatherModel model;
-    public WeatherViewBuilder(WeatherModel model){
+    private final Runnable sceneSwapper;
+    public WeatherViewBuilder(WeatherModel model, Runnable sceneSwapper){
         this.model = model;
+        this.sceneSwapper = sceneSwapper;
     }
 
     @Override
     public Region build() {
         VBox results = new VBox(60, createCityTemp(), createFiveDay());
         results.setAlignment(Pos.CENTER);
-        results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
+        //results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());     MOVED TO LayoutWrapper
         return results;
     }
 
@@ -36,11 +38,19 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createHumidityWind("Windspeed", "10mi/h"));
         hbox.setAlignment(Pos.CENTER);
 
+        // TODO: Fix locationSearchBuilder view
         VBox results = new VBox(4,
-                new Button("Change Location"), cityLabel, tempLabel, getImage(), hbox);
+                createSceneChangeButton("Change Location"),
+                cityLabel, tempLabel, getImage(), hbox);
 
         results.setAlignment(Pos.CENTER);
         return results;
+    }
+
+    private Node createSceneChangeButton(String buttonText) {
+        Button button = new Button(buttonText);
+        button.setOnAction(evt -> sceneSwapper.run());
+        return button;
     }
 
     private Node createHumidityWind(String type, String data){
