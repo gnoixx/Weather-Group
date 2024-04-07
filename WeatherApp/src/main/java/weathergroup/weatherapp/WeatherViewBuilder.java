@@ -1,5 +1,6 @@
 package weathergroup.weatherapp;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -22,8 +23,10 @@ public class WeatherViewBuilder implements Builder<Region> {
 
     @Override
     public Region build() {
-        VBox results = new VBox(60, createCityTemp(), createFiveDay());
-        results.setAlignment(Pos.CENTER);
+        VBox results = new VBox(60, createSceneChangeButton("Change Location"),
+                createCityTemp(), createFiveDay());
+        results.setAlignment(Pos.TOP_CENTER);
+        results.setPadding(new Insets(20));
         //results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());     MOVED TO LayoutWrapper
         return results;
     }
@@ -38,11 +41,7 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createHumidityWind("Windspeed", "10mi/h"));
         hbox.setAlignment(Pos.CENTER);
 
-        // TODO: Fix locationSearchBuilder view
-        VBox results = new VBox(4,
-                createSceneChangeButton("Change Location"),
-                cityLabel, tempLabel, getImage(), hbox);
-
+        VBox results = new VBox(4, cityLabel, tempLabel, getImage(), hbox);
         results.setAlignment(Pos.CENTER);
         return results;
     }
