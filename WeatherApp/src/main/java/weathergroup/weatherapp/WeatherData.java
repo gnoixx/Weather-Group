@@ -5,15 +5,16 @@ import java.util.Date;
 public class WeatherData {
 
 	private Location loc;
-	private double temperature, feelsLike, oneHourRain, oneHourSnow;
+	private double temperature, feelsLike, windSpeed, oneHourRain, oneHourSnow;
 	private int humidity, timestampUTC, timeZoneOffset;
 	private String weatherType, weatherDesc;
 	
-	public WeatherData(Location l, double temp, double feel, double hourRain, double hourSnow,
+	public WeatherData(Location l, double temp, double feel, double wSpeed, double hourRain, double hourSnow,
 			int hum, int tStamp, int tZone, String wType, String wDesc) {
 		loc = l;
 		temperature = temp;
 		feelsLike = feel;
+		windSpeed = wSpeed;
 		oneHourRain = hourRain;
 		oneHourSnow = hourSnow;
 		humidity = hum;
@@ -53,6 +54,10 @@ public class WeatherData {
 		case 'f': return (((feelsLike - 273.15) * 9)/5) + 32;
 		}
 		return feelsLike;
+	}
+
+	public double getWindSpeed() {
+		return windSpeed;
 	}
 
 	public double getOneHourRain() {
