@@ -108,7 +108,7 @@ public class WeatherApi
 
     private static double extractFeelsLike(String responseBody){
         Pattern pattern = Pattern.compile("(\"feels_like\":\\s*)(\\d*[.]\\d*)");
-        Matcher matcher pattern.matcher(responseBody);
+        Matcher matcher = pattern.matcher(responseBody);
         if(matcher.find()) {
             return Double.parseDouble(matcher.group(2));
         } else {
@@ -174,7 +174,7 @@ public class WeatherApi
         Pattern pattern = Pattern.compile("(\"main\":\\s*\")([^\"]*)");
         Matcher matcher = pattern.matcher(responseBody);
         if(matcher.find()) {
-            return Integer.parseInt(matcher.group(2)); //Extracts the basic type of the current weather (e.g. Rain, Snow, Clouds, etc.).
+            return matcher.group(2); //Extracts the basic type of the current weather (e.g. Rain, Snow, Clouds, etc.).
         } else {
             throw new IllegalArgumentException("Weather type not found in JSON response");
         }
@@ -184,12 +184,11 @@ public class WeatherApi
         Pattern pattern = Pattern.compile("(\"description\":\\s*\")([^\"]*)");
         Matcher matcher = pattern.matcher(responseBody);
         if(matcher.find()) {
-            return Integer.parseInt(matcher.group(2)); //Extracts the specific description of the current weather.
+            return matcher.group(2); //Extracts the specific description of the current weather.
         } else {
             throw new IllegalArgumentException("Weather description not found in JSON response");
         }
     }
-
 
 }
 
