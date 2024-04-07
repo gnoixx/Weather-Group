@@ -17,3 +17,8 @@ WeatherApp/.gradle/8.2/fileHashes/fileHashes.lock
 WeatherApp/.gradle/file-system.probe
 WeatherApp/.idea/workspace.xml
 WeatherApp/build/libs/WeatherApp-1.0-SNAPSHOT.jar
+*.bin
+*.lock
+*.probe
+*.xml
+*.jar
