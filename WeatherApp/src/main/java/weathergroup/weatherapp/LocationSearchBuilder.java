@@ -23,8 +23,6 @@ public class LocationSearchBuilder implements Builder<Region> {
 
     private final WeatherModel model;
     private final Runnable sceneSwapper;
-    private final StringProperty city = new SimpleStringProperty();
-    private final StringProperty state = new SimpleStringProperty();
     private final Consumer<Runnable> weatherFetcher;
 
     public LocationSearchBuilder(WeatherModel model, Consumer<Runnable> weatherFetcher, Runnable sceneSwapper) {
@@ -51,10 +49,10 @@ public class LocationSearchBuilder implements Builder<Region> {
     private Node buildSearchTools(BooleanProperty saving){
         ComboBox<String> stateCB = new ComboBox<>();
         stateCB.getItems().setAll(model.getStates());
-        state.bind(stateCB.valueProperty());
+        model.stateLookupProperty().bind(stateCB.valueProperty());
 
         TextField cityTF = new TextField();
-        city.bind(cityTF.textProperty());
+        model.cityLookupProperty().bind(cityTF.textProperty());
 
         // state and city fields
         HBox fields = new HBox(10, buildLabeledTool("State", stateCB),
@@ -83,15 +81,14 @@ public class LocationSearchBuilder implements Builder<Region> {
 
         // Confirm button is disabled if city/state fields are empty OR if we are saving weather data
         confirmButton.disableProperty().bind(
-                city.isEmpty()
-                        .or(state.isEmpty()
+                model.cityLookupProperty().isEmpty()
+                        .or(model.stateLookupProperty().isEmpty()
                                 .or(saving))
         );
 
         confirmButton.setOnAction(evt -> {
             saving.set(true);
             weatherFetcher.accept(() -> {
-                model.setCity(city.get());
                 saving.set(false);
             });
         });

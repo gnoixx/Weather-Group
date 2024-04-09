@@ -25,6 +25,7 @@ public class WeatherController {
             interactor.updateWeatherModel();
             postFetchGuiStuff.run();
         });
+        fetchTask.setOnFailed(evt -> postFetchGuiStuff.run());
         Thread fetchThread = new Thread(fetchTask);
         fetchThread.start();
     }

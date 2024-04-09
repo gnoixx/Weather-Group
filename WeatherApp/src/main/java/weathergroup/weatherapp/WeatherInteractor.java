@@ -10,20 +10,21 @@ public class WeatherInteractor {
 
     public WeatherInteractor(WeatherModel model) {
         this.model = model;
-        model.setCity("Minneapolis");
+        model.setCityLookup("Minneapolis");
         model.setStates(createAbbrList());
-        weatherData = weatherFetcher.checkWeather(model.getCity());
+        weatherData = weatherFetcher.checkWeather(model.getCityLookup());
         updateWeatherModel();
     }
 
     public void checkWeather() {
-        weatherData = weatherFetcher.checkWeather(model.getCity());
+        weatherData = weatherFetcher.checkWeather(model.getCityLookup());
     }
 
     public void updateWeatherModel() {
         model.setCurrentTemp(weatherData.getTemperature());
         model.setConditions(weatherData.getConditions());
         model.setIcon(weatherData.getWeatherImage());
+        model.setCity(model.getCityLookup());
     }
 
     private List<String> createAbbrList(){

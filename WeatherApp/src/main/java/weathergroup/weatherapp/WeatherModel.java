@@ -13,9 +13,10 @@ import java.util.List;
 
 public class WeatherModel {
     private final StringProperty city = new SimpleStringProperty("");
-
+    private final StringProperty city_lookup = new SimpleStringProperty("");
     private final HashMap<String, String> StateAbbr = buildMap();
     private final StringProperty state = new SimpleStringProperty("");
+    private final StringProperty state_lookup = new SimpleStringProperty("");
     private final StringProperty current_temp = new SimpleStringProperty("");
     private final StringProperty conditions = new SimpleStringProperty("");
     private final ObjectProperty<Image> icon = new SimpleObjectProperty<>();
@@ -33,6 +34,18 @@ public class WeatherModel {
         this.city.set(city);
     }
 
+    public String getCityLookup() {
+        return city_lookup.get();
+    }
+
+    public StringProperty cityLookupProperty() {
+        return city_lookup;
+    }
+
+    public void setCityLookup(String city_lookup) {
+        this.city_lookup.set(city_lookup);
+    }
+
     public String getState() {
         return StateAbbr.get(state.get());
     }
@@ -43,6 +56,18 @@ public class WeatherModel {
 
     public void setState(String state) {
         this.state.set(state);
+    }
+
+    public String getStateLookup() {
+        return state_lookup.get();
+    }
+
+    public StringProperty stateLookupProperty() {
+        return state_lookup;
+    }
+
+    public void setStateLookup(String state_lookup) {
+        this.state_lookup.set(state_lookup);
     }
 
     public String getCurrent_temp() {
