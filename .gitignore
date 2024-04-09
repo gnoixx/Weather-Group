@@ -3,3 +3,4 @@
 *.probe
 *.xml
 *.jar
+*.class
