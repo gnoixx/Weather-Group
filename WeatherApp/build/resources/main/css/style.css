@@ -23,3 +23,7 @@
     -fx-border-color: black;
     -fx-padding: 6;
 }
+
+.weather-region {
+    -fx-background-color: #dddddd;
+}

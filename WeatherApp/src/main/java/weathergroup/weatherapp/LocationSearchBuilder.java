@@ -2,6 +2,8 @@ package weathergroup.weatherapp;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
@@ -15,32 +17,38 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
+import java.util.function.Consumer;
+
 public class LocationSearchBuilder implements Builder<Region> {
 
     private final WeatherModel model;
     private final Runnable sceneSwapper;
     private final StringProperty city = new SimpleStringProperty();
     private final StringProperty state = new SimpleStringProperty();
+    private final Consumer<Runnable> weatherFetcher;
 
-    public LocationSearchBuilder(WeatherModel model, Runnable sceneSwapper) {
+    public LocationSearchBuilder(WeatherModel model, Consumer<Runnable> weatherFetcher, Runnable sceneSwapper) {
         this.model = model;
+        this.weatherFetcher = weatherFetcher;
         this.sceneSwapper = sceneSwapper;
     }
 
     @Override
     public Region build() {
+        BooleanProperty saving = new SimpleBooleanProperty(false);
         Button button = new Button("View Weather");
+        button.disableProperty().bind(saving);
         button.setOnAction(evt -> sceneSwapper.run());
         VBox results = new VBox(20, button,
                 new Label("Change Location"),
-                buildSearchTools()
+                buildSearchTools(saving)
         );
         results.setAlignment(Pos.TOP_CENTER);
         results.setPadding(new Insets(20));
         return results;
     }
 
-    private Node buildSearchTools(){
+    private Node buildSearchTools(BooleanProperty saving){
         ComboBox<String> stateCB = new ComboBox<>();
         stateCB.getItems().setAll(model.getStates());
         state.bind(stateCB.valueProperty());
@@ -62,26 +70,32 @@ public class LocationSearchBuilder implements Builder<Region> {
         history.setContent(locationHistory);
 
         // Confirm button
-        Button confirmButton = buildConfirmButton();
+        Button confirmButton = buildConfirmButton(weatherFetcher, saving);
 
         VBox results = new VBox(10, fields, locationViews, confirmButton);
         results.setPadding(new Insets(24));
         return results;
     }
 
-    private Button buildConfirmButton(){
+    private Button buildConfirmButton(Consumer<Runnable> weatherFetcher, BooleanProperty saving){
         // Confirm button
         Button confirmButton = new Button("Confirm");
 
-        // Confirm button is disabled if city field is empty
-        confirmButton.disableProperty().bind(city.isEmpty());
+        // Confirm button is disabled if city/state fields are empty OR if we are saving weather data
+        confirmButton.disableProperty().bind(
+                city.isEmpty()
+                        .or(state.isEmpty()
+                                .or(saving))
+        );
 
         confirmButton.setOnAction(evt -> {
-            model.setState(state.getValue());
-            model.setCity(city.getValue().toLowerCase());
-            System.out.println("New location confirmed: " + model.getCity() + ", " + model.getState());
-            // TODO: fetch weather data
+            saving.set(true);
+            weatherFetcher.accept(() -> {
+                model.setCity(city.get());
+                saving.set(false);
+            });
         });
+
         return confirmButton;
     }
 

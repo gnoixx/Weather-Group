@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
+// TODO: Update wind and humidity
 public class WeatherViewBuilder implements Builder<Region> {
 
     private final WeatherModel model;
@@ -27,7 +28,7 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createCityTemp(), createFiveDay());
         results.setAlignment(Pos.TOP_CENTER);
         results.setPadding(new Insets(20));
-        //results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());     MOVED TO LayoutWrapper
+        results.getStyleClass().add("weather-region");
         return results;
     }
 
@@ -41,7 +42,7 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createHumidityWind("Windspeed", "10mi/h"));
         hbox.setAlignment(Pos.CENTER);
 
-        VBox results = new VBox(4, cityLabel, tempLabel, getImage(), hbox);
+        VBox results = new VBox(4, cityLabel, tempLabel, getWeatherIcon(), hbox);
         results.setAlignment(Pos.CENTER);
         return results;
     }
@@ -82,11 +83,10 @@ public class WeatherViewBuilder implements Builder<Region> {
         return results;
     }
 
-    private Node getImage(){
-        Image image = new Image(this.getClass().getResource("cloud.jpg").toString());
-        ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(true);
-        imageView.setFitHeight(100);
+    private Node getWeatherIcon(){
+        ImageView imageView = new ImageView();
+        imageView.imageProperty().bind(model.iconProperty());
+        imageView.setFitHeight(140);
         return imageView;
     }
 

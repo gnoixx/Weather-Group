@@ -1,21 +1,24 @@
 package weathergroup.weatherapp;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-// TODO: Finish adding abbr:city pairs to StateAbbr hashmap
 public class WeatherModel {
-    private final StringProperty city = new SimpleStringProperty("Minneapolis");
+    private final StringProperty city = new SimpleStringProperty("");
 
     private final HashMap<String, String> StateAbbr = buildMap();
-    private final StringProperty state = new SimpleStringProperty("MN");
-    private final StringProperty current_temp = new SimpleStringProperty("40ºF");
+    private final StringProperty state = new SimpleStringProperty("");
+    private final StringProperty current_temp = new SimpleStringProperty("");
+    private final StringProperty conditions = new SimpleStringProperty("");
+    private final ObjectProperty<Image> icon = new SimpleObjectProperty<>();
     private final ObservableList<String> states = FXCollections.observableArrayList();
 
     public String getCity() {
@@ -50,8 +53,32 @@ public class WeatherModel {
         return current_temp;
     }
 
-    public void setCurrent_temp(String current_temp) {
+    public void setCurrentTemp(String current_temp) {
         this.current_temp.set(current_temp);
+    }
+
+    public String getConditions() {
+        return conditions.get();
+    }
+
+    public StringProperty conditionsProperty() {
+        return conditions;
+    }
+
+    public void setConditions(String conditions) {
+        this.conditions.set(conditions);
+    }
+
+    public Image getIcon() {
+        return icon.get();
+    }
+
+    public ObjectProperty<Image> iconProperty() {
+        return icon;
+    }
+
+    public void setIcon(Image icon) {
+        this.icon.set(icon);
     }
 
     public ObservableList<String> getStates() {
@@ -88,6 +115,33 @@ public class WeatherModel {
         map.put("MA", "Massachusetts");
         map.put("MI", "Michigan");
         map.put("MN", "Minnesota");
+        map.put("MS", "Mississippi");
+        map.put("MO", "Missouri");
+        map.put("MT", "Montana");
+        map.put("NE", "Nebraska");
+        map.put("NV", "Nevada");
+        map.put("NH", "New Hampshire");
+        map.put("NJ", "New Jersey");
+        map.put("NM", "New Mexico");
+        map.put("NY", "New York");
+        map.put("NC", "North Carolina");
+        map.put("ND", "North Dakota");
+        map.put("OH", "Ohio");
+        map.put("OK", "Oklahoma");
+        map.put("OR", "Oregon");
+        map.put("PA", "Pennsylvania");
+        map.put("RI", "Rhode Island");
+        map.put("SC", "South Carolina");
+        map.put("SD", "South Dakota");
+        map.put("TN", "Tennessee");
+        map.put("TX", "Texas");
+        map.put("UT", "Utah");
+        map.put("VT", "Vermont");
+        map.put("VA", "Virginia");
+        map.put("WA", "Washington");
+        map.put("WV", "West Virginia");
+        map.put("WI", "Wisconsin");
+        map.put("WY", "Wyoming");
         return map;
     }
 }

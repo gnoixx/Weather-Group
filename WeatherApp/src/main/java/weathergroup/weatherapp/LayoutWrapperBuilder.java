@@ -11,20 +11,25 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Builder;
+
+import java.util.function.Consumer;
+
 public class LayoutWrapperBuilder implements Builder<Region> {
 
     private final WeatherModel model;
+    private final Consumer<Runnable> weatherFetcher;
     Region locationView;
 
-    public LayoutWrapperBuilder(WeatherModel model) {
+    public LayoutWrapperBuilder(WeatherModel model, Consumer<Runnable> weatherFetcher) {
         this.model = model;
+        this.weatherFetcher = weatherFetcher;
     }
 
     @Override
     public Region build() {
         BorderPane results = new BorderPane();
         Region weatherView = new WeatherViewBuilder(model, createSceneSwapper(results)).build();
-        this.locationView = new LocationSearchBuilder(model, () -> results.setCenter(weatherView)).build();
+        this.locationView = new LocationSearchBuilder(model, weatherFetcher, () -> results.setCenter(weatherView)).build();
         results.setCenter(weatherView);
 
         results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());

@@ -21,11 +21,11 @@ public class WeatherComparison {
 	 *If the output is negative, data2's attribute is higher.
 	*/
 	public double compareTemp() {
-		return data1.getTemperature() - data2.getTemperature();
+		return Double.parseDouble(data1.getTemperature()) - Double.parseDouble(data2.getTemperature());
 	}
 	
-	public double compareTemp(char units) {
-		return data1.getTemperature(units) - data2.getTemperature(units);
+	public String compareTemp(char units) {
+		return Double.toString(Double.parseDouble(data1.getTemperature(units)) - Double.parseDouble(data2.getTemperature(units)));
 	}
 	
 	public double compareFeelsLike() {

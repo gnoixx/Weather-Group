@@ -1,14 +1,17 @@
 package weathergroup.weatherapp;
 
+import javafx.scene.image.Image;
+
 import java.util.Date;
 
 public class WeatherData {
 
 	private Location loc;
-	private double temperature, feelsLike, windSpeed, oneHourRain, oneHourSnow;
+	private double feelsLike, windSpeed, oneHourRain, oneHourSnow;
 	private int humidity, timestampUTC, timeZoneOffset;
-	private String weatherType, weatherDesc;
-	
+	private String temperature, weatherType, weatherDesc, conditions;
+	private Image weatherImage;
+	/*
 	public WeatherData(Location l, double temp, double feel, double wSpeed, double hourRain, double hourSnow,
 			int hum, int tStamp, int tZone, String wType, String wDesc) {
 		loc = l;
@@ -23,21 +26,21 @@ public class WeatherData {
 		weatherType = wType;
 		weatherDesc = wDesc;
 	}
-
+*/
 	public Location getLoc() {
 		return loc;
 	}
 
-	public double getTemperature() {
+	public String getTemperature() {
 		return temperature;
 	}
 	
 	//Accepts 'k'/'K' for Kelvin (default), 'c'/'C' for Celsius, and 'f'/'F' for Fahrenheit. Returns default (Kelvin) otherwise.
-	public double getTemperature(char units) {
+	public String getTemperature(char units) {
 		switch (Character.toLowerCase(units)) {
 		case 'k': return temperature;
-		case 'c': return temperature - 273.15;
-		case 'f': return (((temperature - 273.15) * 9)/5) + 32;
+		case 'c': return Double.toString(Double.parseDouble(temperature) - 273.15);
+		case 'f': return Double.toString((((Double.parseDouble(temperature) - 273.15) * 9)/5) + 32);
 		}
 		return temperature;
 	}
@@ -98,7 +101,7 @@ public class WeatherData {
 		loc = l;
 	}
 
-	public void setTemperature(double t) {
+	public void setTemperature(String t) {
 		temperature = t;
 	}
 
@@ -132,5 +135,20 @@ public class WeatherData {
 
 	public void setWeatherDesc(String wD) {
 		weatherDesc = wD;
-	}	
+	}
+	public Image getWeatherImage() {
+		return weatherImage;
+	}
+
+	public void setWeatherImage(Image weatherImage) {
+		this.weatherImage = weatherImage;
+	}
+
+	public String getConditions() {
+		return conditions;
+	}
+
+	public void setConditions(String conditions) {
+		this.conditions = conditions;
+	}
 }
