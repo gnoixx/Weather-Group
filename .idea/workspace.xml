@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="058578cc-d8d0-43d4-a6e1-74c0828e9507" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherComparison.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherComparison.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherData.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherViewBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherApp/src/main/java/weathergroup/weatherapp/WeatherViewBuilder.java" afterDir="false" />
-    </list>
+    <list default="true" id="058578cc-d8d0-43d4-a6e1-74c0828e9507" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +25,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -172,6 +164,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
