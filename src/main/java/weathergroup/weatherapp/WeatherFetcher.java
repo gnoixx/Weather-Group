@@ -37,13 +37,13 @@ public class WeatherFetcher {
         }
     }
 
-    public WeatherData checkWeather(String city) {
+    public WeatherData checkWeather(String city, String state) {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("http")
                 .host("api.openweathermap.org")
                 .addPathSegments("data/2.5/weather")
                 .addQueryParameter("units", "imperial")
-                .addQueryParameter("q", city)
+                .addQueryParameter("q", city + ", " + state + ", US")
                 .addQueryParameter("appid", apiKey)
                 .build();
         Request request = new Request.Builder().url(url).build();

@@ -42,7 +42,10 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createHumidityWind("Windspeed", "10mi/h"));
         hbox.setAlignment(Pos.CENTER);
 
-        VBox results = new VBox(4, cityLabel, tempLabel, getWeatherIcon(), hbox);
+        VBox temp_cond = new VBox(2, cityLabel, tempLabel, getWeatherIcon());
+        temp_cond.setAlignment(Pos.CENTER);
+
+        VBox results = new VBox(24, temp_cond, hbox);
         results.setAlignment(Pos.CENTER);
         return results;
     }
@@ -86,8 +89,13 @@ public class WeatherViewBuilder implements Builder<Region> {
     private Node getWeatherIcon(){
         ImageView imageView = new ImageView();
         imageView.imageProperty().bind(model.iconProperty());
+        imageView.setPreserveRatio(true);
         imageView.setFitHeight(140);
-        return imageView;
+        Label conditions = new Label();
+        conditions.textProperty().bind(model.conditionsProperty());
+        VBox results = new VBox(imageView, conditions);
+        results.setAlignment(Pos.CENTER);
+        return results;
     }
 
     private Node createFiveDay(){

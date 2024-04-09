@@ -12,12 +12,12 @@ public class WeatherInteractor {
         this.model = model;
         model.setCityLookup("Minneapolis");
         model.setStates(createAbbrList());
-        weatherData = weatherFetcher.checkWeather(model.getCityLookup());
+        weatherData = weatherFetcher.checkWeather(model.getCityLookup(), model.getStateLookup());
         updateWeatherModel();
     }
 
     public void checkWeather() {
-        weatherData = weatherFetcher.checkWeather(model.getCityLookup());
+        weatherData = weatherFetcher.checkWeather(model.getCityLookup(), model.getStateLookup());
     }
 
     public void updateWeatherModel() {
