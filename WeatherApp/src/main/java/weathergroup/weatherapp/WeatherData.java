@@ -1,6 +1,7 @@
 package weathergroup.weatherapp;
 
 public class WeatherData {
+<<<<<<< HEAD
 	private double temperature; // in Kelvin
 	private double windSpeed; // in m/s
 	private long visibility; // in meters
@@ -18,6 +19,33 @@ public class WeatherData {
 	}
 
 	// Getter and Setter methods
+=======
+
+	private Location loc;
+	private double temperature, feelsLike, windSpeed, oneHourRain, oneHourSnow;
+	private int humidity, timestampUTC, timeZoneOffset;
+	private String weatherType, weatherDesc;
+	
+	public WeatherData(Location l, double temp, double feel, double wSpeed, double hourRain, double hourSnow,
+			int hum, int tStamp, int tZone, String wType, String wDesc) {
+		loc = l;
+		temperature = temp;
+		feelsLike = feel;
+		windSpeed = wSpeed;
+		oneHourRain = hourRain;
+		oneHourSnow = hourSnow;
+		humidity = hum;
+		timestampUTC = tStamp;
+		timeZoneOffset = tZone;
+		weatherType = wType;
+		weatherDesc = wDesc;
+	}
+
+	public Location getLoc() {
+		return loc;
+	}
+
+>>>>>>> a3a2a7bc15e595fef15ec01f753f0654ce9a18e8
 	public double getTemperature() {
 		return temperature;
 	}
@@ -35,6 +63,30 @@ public class WeatherData {
 			default:
 				return this.temperature;
 		}
+<<<<<<< HEAD
+=======
+		return feelsLike;
+	}
+
+	public double getWindSpeed() {
+		return windSpeed;
+	}
+
+	public double getOneHourRain() {
+		return oneHourRain;
+	}
+
+	public double getOneHourSnow() {
+		return oneHourSnow;
+	}
+
+	public int getHumidity() {
+		return humidity;
+	}
+
+	public int getTimestampUTC() {
+		return timestampUTC;
+>>>>>>> a3a2a7bc15e595fef15ec01f753f0654ce9a18e8
 	}
 
 

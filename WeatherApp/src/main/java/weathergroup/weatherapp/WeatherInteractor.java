@@ -1,5 +1,6 @@
 package weathergroup.weatherapp;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,6 +9,11 @@ import java.net.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+=======
+import java.util.Arrays;
+
+// TODO: Sort States array
+>>>>>>> a3a2a7bc15e595fef15ec01f753f0654ce9a18e8
 public class WeatherInteractor {
     private static final String API_KEY = "9ac1fc34473d995eb859b35d17f73644";
     private final WeatherModel model;
@@ -15,6 +21,25 @@ public class WeatherInteractor {
 
     public WeatherInteractor(WeatherModel model) {
         this.model = model;
+        model.setStates(Arrays.asList(
+                "AL", "KY", "OH",
+                "AK", "LA", "OK",
+                "AZ", "ME", "OR",
+                "AR", "MD", "PA",
+                "AS", "MA", "PR",
+                "CA", "MI", "RI",
+                "CO", "MN", "SC",
+                "CT", "MS", "SD",
+                "DE", "MO", "TN",
+                "MT", "TX", "FL",
+                "NE", "GA", "NV",
+                "UT", "NH", "VT",
+                "HI", "NJ", "VA",
+                "ID", "NM",
+                "IL", "NY", "WA",
+                "IN", "NC", "WV",
+                "IA", "ND", "WI",
+                "KS", "WY"));
     }
 
     public void updateWeatherForCity(String city) {

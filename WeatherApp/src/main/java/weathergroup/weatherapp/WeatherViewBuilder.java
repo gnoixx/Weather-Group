@@ -1,5 +1,6 @@
 package weathergroup.weatherapp;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,18 +18,27 @@ import java.util.Optional;
 public class WeatherViewBuilder implements Builder<Region> {
 
     private final WeatherModel model;
+<<<<<<< HEAD
     private final WeatherInteractor interactor; // Added interactor
 
     public WeatherViewBuilder(WeatherModel model) {
         this.model = model;
         this.interactor = new WeatherInteractor(model); // Initialize the interactor
+=======
+    private final Runnable sceneSwapper;
+    public WeatherViewBuilder(WeatherModel model, Runnable sceneSwapper){
+        this.model = model;
+        this.sceneSwapper = sceneSwapper;
+>>>>>>> a3a2a7bc15e595fef15ec01f753f0654ce9a18e8
     }
 
     @Override
     public Region build() {
-        VBox results = new VBox(60, createCityTemp(), createFiveDay());
-        results.setAlignment(Pos.CENTER);
-        results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
+        VBox results = new VBox(60, createSceneChangeButton("Change Location"),
+                createCityTemp(), createFiveDay());
+        results.setAlignment(Pos.TOP_CENTER);
+        results.setPadding(new Insets(20));
+        //results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());     MOVED TO LayoutWrapper
         return results;
     }
 
@@ -55,6 +65,7 @@ public class WeatherViewBuilder implements Builder<Region> {
                 createHumidityWind("Wind Speed", model.getWindSpeed()));
         hbox.setAlignment(Pos.CENTER);
 
+<<<<<<< HEAD
         VBox vbox = new VBox(4, changeLocationButton, cityLabel, tempLabel, getImage(), hbox);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
@@ -69,6 +80,21 @@ public class WeatherViewBuilder implements Builder<Region> {
         }
 
         VBox vbox = new VBox(new Label(type), dataLabel);
+=======
+        VBox results = new VBox(4, cityLabel, tempLabel, getImage(), hbox);
+        results.setAlignment(Pos.CENTER);
+        return results;
+    }
+
+    private Node createSceneChangeButton(String buttonText) {
+        Button button = new Button(buttonText);
+        button.setOnAction(evt -> sceneSwapper.run());
+        return button;
+    }
+
+    private Node createHumidityWind(String type, String data){
+        VBox vbox = new VBox(new Label(type), new Label(data));
+>>>>>>> a3a2a7bc15e595fef15ec01f753f0654ce9a18e8
         vbox.setAlignment(Pos.CENTER_LEFT);
 
         Image image = new Image(this.getClass().getResource(type.equalsIgnoreCase("Humidity") ? "humidity.jpg" : "wind.jpg").toString());

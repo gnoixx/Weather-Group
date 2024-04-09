@@ -9,7 +9,7 @@ public class WeatherController {
 
     public WeatherController() {
         WeatherModel model = new WeatherModel();
-        viewBuilder = new WeatherViewBuilder(model);
+        viewBuilder = new LayoutWrapperBuilder(model);
         interactor = new WeatherInteractor(model);
     }
     public Region getView(){
