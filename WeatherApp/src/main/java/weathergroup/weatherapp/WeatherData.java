@@ -1,131 +1,80 @@
 package weathergroup.weatherapp;
 
-import java.util.Date;
-
 public class WeatherData {
+	private double temperature; // in Kelvin
+	private double windSpeed; // in m/s
+	private long visibility; // in meters
+	private long sunrise; // Unix UTC
+	private long sunset; // Unix UTC
+	private int humidity; // Percentage
 
-	private Location loc;
-	private double temperature, feelsLike, oneHourRain, oneHourSnow;
-	private int humidity, timestampUTC, timeZoneOffset;
-	private String weatherType, weatherDesc;
-	
-	public WeatherData(Location l, double temp, double feel, double hourRain, double hourSnow,
-			int hum, int tStamp, int tZone, String wType, String wDesc) {
-		loc = l;
-		temperature = temp;
-		feelsLike = feel;
-		oneHourRain = hourRain;
-		oneHourSnow = hourSnow;
-		humidity = hum;
-		timestampUTC = tStamp;
-		timeZoneOffset = tZone;
-		weatherType = wType;
-		weatherDesc = wDesc;
+	public WeatherData(double temperature, double windSpeed, long visibility, long sunrise, long sunset, int humidity) {
+		this.temperature = temperature;
+		this.windSpeed = windSpeed;
+		this.visibility = visibility;
+		this.sunrise = sunrise;
+		this.sunset = sunset;
+		this.humidity = humidity;
 	}
 
-	public Location getLoc() {
-		return loc;
-	}
-
+	// Getter and Setter methods
 	public double getTemperature() {
 		return temperature;
 	}
-	
-	//Accepts 'k'/'K' for Kelvin (default), 'c'/'C' for Celsius, and 'f'/'F' for Fahrenheit. Returns default (Kelvin) otherwise.
+
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
 	public double getTemperature(char units) {
-		switch (Character.toLowerCase(units)) {
-		case 'k': return temperature;
-		case 'c': return temperature - 273.15;
-		case 'f': return (((temperature - 273.15) * 9)/5) + 32;
+		switch (units) {
+			case 'f': // Convert to Fahrenheit
+				return (this.temperature - 273.15) * 9/5 + 32;
+			case 'c': // Convert to Celsius
+				return this.temperature - 273.15;
+			case 'k': // Already in Kelvin
+			default:
+				return this.temperature;
 		}
-		return temperature;
 	}
 
-	public double getFeelsLike() {
-		return feelsLike;
-	}
-	
-	//Same as getTemperature(char) above.
-	public double getFeelsLike(char units) {
-		switch (Character.toLowerCase(units)) {
-		case 'k': return feelsLike;
-		case 'c': return feelsLike - 273.15;
-		case 'f': return (((feelsLike - 273.15) * 9)/5) + 32;
-		}
-		return feelsLike;
+
+	public double getWindSpeed() {
+		return windSpeed;
 	}
 
-	public double getOneHourRain() {
-		return oneHourRain;
+	public void setWindSpeed(double windSpeed) {
+		this.windSpeed = windSpeed;
 	}
 
-	public double getOneHourSnow() {
-		return oneHourSnow;
+	public long getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(long visibility) {
+		this.visibility = visibility;
+	}
+
+	public long getSunrise() {
+		return sunrise;
+	}
+
+	public void setSunrise(long sunrise) {
+		this.sunrise = sunrise;
+	}
+
+	public long getSunset() {
+		return sunset;
+	}
+
+	public void setSunset(long sunset) {
+		this.sunset = sunset;
 	}
 
 	public int getHumidity() {
 		return humidity;
 	}
 
-	public int getTimestampUTC() {
-		return timestampUTC;
+	public void setHumidity(int humidity) {
+		this.humidity = humidity;
 	}
-
-	public int getTimeZoneOffset() {
-		return timeZoneOffset;
-	}
-	
-	public Date getLocalTimestamp() {
-		long localTimestamp = timestampUTC - timeZoneOffset;
-		Date localDate = new Date(localTimestamp);
-		return localDate;
-	}
-
-	public String getWeatherType() {
-		return weatherType;
-	}
-
-	public String getWeatherDesc() {
-		return weatherDesc;
-	}
-
-	public void setLoc(Location l) {
-		loc = l;
-	}
-
-	public void setTemperature(double t) {
-		temperature = t;
-	}
-
-	public void setFeelsLike(double fL) {
-		feelsLike = fL;
-	}
-
-	public void setOneHourRain(double oHR) {
-		oneHourRain = oHR;
-	}
-
-	public void setOneHourSnow(double oHS) {
-		oneHourSnow = oHS;
-	}
-
-	public void setHumidity(int hum) {
-		humidity = hum;
-	}
-
-	public void setTimestampUTC(int tsUTC) {
-		timestampUTC = tsUTC;
-	}
-
-	public void setTimeZoneOffset(int tZOff) {
-		timeZoneOffset = tZOff;
-	}
-
-	public void setWeatherType(String wT) {
-		weatherType = wT;
-	}
-
-	public void setWeatherDesc(String wD) {
-		weatherDesc = wD;
-	}	
 }
