@@ -29,14 +29,18 @@ public class LayoutWrapperBuilder implements Builder<Region> {
     public Region build() {
         BorderPane results = new BorderPane();
         Region weatherView = new WeatherViewBuilder(model, createSceneSwapper(results)).build();
-        this.locationView = new LocationSearchBuilder(model, weatherFetcher, () -> results.setCenter(weatherView)).build();
+        LocationStorage storage = new LocationStorage();
+        this.locationView = new LocationSearchBuilder(model, weatherFetcher, () -> results.setCenter(weatherView), storage).build();
         results.setCenter(weatherView);
 
         results.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
         return results;
     }
     // ...replaced with: "() -> results.setCenter(locationView)).build()"
-    private Runnable createSceneSwapper(BorderPane wrapper){
+
+    private Runnable createSceneSwapper(BorderPane wrapper)
+    {
         return () -> wrapper.setCenter(locationView);
     }
+
 }

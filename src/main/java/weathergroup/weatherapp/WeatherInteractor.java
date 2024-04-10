@@ -3,7 +3,8 @@ package weathergroup.weatherapp;
 import java.util.Arrays;
 import java.util.List;
 
-public class WeatherInteractor {
+public class WeatherInteractor
+{
     private final WeatherModel model;
     private final WeatherFetcher weatherFetcher = new WeatherFetcher();
     private WeatherData weatherData;

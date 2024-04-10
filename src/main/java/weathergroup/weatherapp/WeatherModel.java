@@ -21,6 +21,7 @@ public class WeatherModel {
     private final StringProperty conditions = new SimpleStringProperty("");
     private final ObjectProperty<Image> icon = new SimpleObjectProperty<>();
     private final ObservableList<String> states = FXCollections.observableArrayList();
+    private final LocationStorage locationStorage;
 
     public String getCity() {
         return city.get();
@@ -110,11 +111,13 @@ public class WeatherModel {
         return states;
     }
 
-    public void setStates(List<String> states) {
+    public void setStates(List<String> states)
+    {
         this.states.setAll(states);
     }
 
-    private HashMap<String, String> buildMap(){
+    private HashMap<String, String> buildMap()
+    {
         HashMap<String, String> map = new HashMap<>();
         map.put("AL", "Alabama");
         map.put("AK", "Alaska");
@@ -168,5 +171,13 @@ public class WeatherModel {
         map.put("WI", "Wisconsin");
         map.put("WY", "Wyoming");
         return map;
+    }
+
+    public WeatherModel() {
+        locationStorage = new LocationStorage();
+    }
+
+    public LocationStorage getLocationStorage() {
+        return locationStorage;
     }
 }
